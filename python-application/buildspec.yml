@@ -2,9 +2,9 @@ version: 0.2
 
 env:
   variables:
-     docker_username: /myapp/docker-credentials/username
-     docker_password: /myapp/docker-credentials/password
-     docker_url: /myapp/docker-credentials/url
+     docker_username: docker_username
+     docker_password: docker_password
+     docker_url: docker_url
 phases:
   install:
     runtime-versions:
@@ -18,8 +18,8 @@ phases:
       - cd python-application
       - echo "Building Docker Image"
       - echo docker login --username "$docker_username" --password "$docker_password"
-      - docker build -t "docker_url/docker_username/project4-flask-ci:latest" .
-      - docker push "docker.io/miauu57/project4-flask-ci:latest"
+      - docker build -t "$docker_url/$docker_username/project4-image:latest" .
+      - docker push "docker_url/$docker_username/project4-image:latest"
       # - command
   post_build:
     commands:
