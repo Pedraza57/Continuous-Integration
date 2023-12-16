@@ -2,9 +2,9 @@ version: 0.2
 
 env:
   variables:
-     docker_username: docker_username
-     docker_password: docker_password
-     docker_url: docker_url
+     docker_username: "miauu57"
+     docker_password: "Candy007!"
+     docker_url: "docker.io"
 phases:
   install:
     runtime-versions:
@@ -17,9 +17,9 @@ phases:
     commands:
       - cd python-application
       - echo "Building Docker Image"
-      - echo docker login --username "$docker_username" --password "$docker_password"
-      - docker build -t "$docker_url/$docker_username/project4-image:latest" .
-      - docker push "$docker_url/$docker_username/project4-image:latest"
+      - echo "$docker_password" | docker login -u "$docker_username" --password-stdin "$docker_url"
+      - docker build -t "docker.io/miauu57/project4-image:latest" .
+      - docker push "docker.io/miauu57/project4-image:latest"
       # - command
   post_build:
     commands:
